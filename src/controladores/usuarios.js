@@ -89,8 +89,6 @@ const atualizarPerfil = async (req, res) => {
             .update(body)
             .where({ id: req.usuario.id })
             .returning('*')
-        
-        console.log(usuarioAtualizado)
 
         if (!usuarioAtualizado) {
             return res.status(400).json("O usuario não foi atualizado");

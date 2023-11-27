@@ -3,16 +3,8 @@ const knex = require('../conexao');
 const listarProdutos = async (req, res) => {
     const { usuario } = req;
     const { categoria } = req.query;
-    console.log(categoria)
 
     try {
-        // let condicao = '';
-        // const params = [];
-
-        // if (categoria) {
-        //     condicao += 'and categoria ilike $2';
-        //     params.push(`%${categoria}%`);
-        // }
         if (categoria) {
             const produtos = await knex('produtos')
             .where({ usuario_id: usuario.id })
@@ -145,8 +137,6 @@ const atualizarProduto = async (req, res) => {
             .update(body)
             .where({ id })
             .andWhere({ usuario_id: usuario.id })
-        
-        console.log(produtoAtualizado)
 
         if (produtoAtualizado === 0) {
             return res.status(400).json("O produto não foi atualizado");
